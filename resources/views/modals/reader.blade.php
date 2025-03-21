@@ -20,22 +20,41 @@
                     <!-- Link -->
                     <div class="form-group">
                         <label for="autor">Curso</label>
-                        <input type="text" id="autor" wire:model="curso" class="form-control" required>
-                        @error('autor') <small class="text-danger">{{ $message }}</small> @enderror
+                        <select wire:model="curso" class="form-control">
+                            <option selected>Selecione o curso</option>
+                            <option>Ciências da Computação</option>
+                            <option>Hotelaria e Turismo</option>
+                            <option>Gestão Bancaria e Seguros</option>
+                            <option>Gestão de Empresas</option>
+                            <option>Gestão de Recursos Humanos</option>
+                            <option>Direito</option>
+                            <option>Logistica e Gestão Comercial</option>
+                            <option>Engenharia de Redes e Telecomunicões</option>
+                        </select>
                     </div>
 
                     <!-- Editora -->
                     <div class="form-group">
                         <label for="editora">Turno</label>
-                        <input type="text" id="editora" wire:model="period" class="form-control" placeholder="">
-                        @error('editora') <small class="text-danger">{{ $message }}</small> @enderror
+                        <select wire:model="period" class="form-control">
+                            <option selected>Selecione o periodo</option>
+                            <option>Manhã</option>
+                            <option>Tarde</option>
+                            <option>Noite</option>
+                        </select>
                     </div>
 
                     <!-- ano_publicacao -->
                     <div class="form-group">
-                        <label for="level">Ano</label>
-                        <input type="text" id="level" wire:model="level" class="form-control">
-                        @error('ano_publicacao') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label for="level">Ano Curricular</label>
+                        <select wire:model="level" class="form-control">
+                            <option selected>Selecione o ano do estudante</option>
+                            <option>1º Ano</option>
+                            <option>2º Ano</option>
+                            <option>3º Ano</option>
+                            <option>4º Ano</option>
+                            <option>5º Ano</option>
+                        </select>
                     </div>
 
                     <div class="form-group">

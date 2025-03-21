@@ -13,11 +13,17 @@ class Livro extends Model
         'titulo',
         'autor',
         'editora',
-        'ano_publicacao'
+        'ano_publicacao',
+        'category_id'
     ];
 
     public function emprestimos()
     {
         return $this->hasMany(Emprestimo::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -1,11 +1,11 @@
 <div>
     {{-- HEADER --}}
     <div class="page-header">
-        <h3 class="page-title"> Gestão de Livros </h3>
+        <h3 class="page-title"> Gestão de Categorias </h3>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <button  data-toggle="modal" data-target="#create_ads" class="btn btn-primary">+ Adicionar</button>
+                <button  data-toggle="modal" data-target="#create_category" class="btn btn-primary">+ Adicionar</button>
             </li>
           </ol>
         </nav>
@@ -18,22 +18,16 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th> Titulo </th>
                   <th> Categoria </th>
-                  <th> Autor </th>
-                  <th> Editora </th>
-                  <th> Ano de Publicação </th>
+                  <th> Acções </th>
                 </tr>
               </thead>
               <tbody>
-                @if ($books != null)
-                    @foreach ($books as $book)
+                @if (isset($categories) and count($categories) > 0)
+                    @foreach ($categories as $category)
                         <tr>
-                            <td>{{$book->titulo}}</td>
-                            <td>{{$book->category->description}}</td>
-                            <td>{{$book->autor}}</td>
-                            <td>{{$book->editora}}</td>
-                            <td>{{$book->ano_publicacao}}</td>
+                            <td> {{ $category->description }} </td>
+                            <td> Editar </td>
                         </tr>
                     @endforeach
                 @else
@@ -44,6 +38,5 @@
           </div>
         </div>
       </div>
-      
-      @include("modals.create")
+      @include("modals.category")
 </div>

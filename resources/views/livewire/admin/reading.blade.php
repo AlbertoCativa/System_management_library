@@ -33,10 +33,12 @@
                             <td> {{ $item->leitor->nome }} </td>
                             @if ($item->status == "em_andamento")
                                 <td>
-                                  <span class="badge-dark p-1 text-capitalize rounded">{{ $item->status }}</span>
+                                  <span class="badge-danger p-1 text-capitalize rounded" style="cursor:pointer" wire:click="readingUpdate({{ $item->id }})">Emprestado</span>
                                 </td>
                             @else
-                              
+                            <td>
+                              <span class="badge-success p-1 text-capitalize rounded">Devolvido</span>
+                            </td>
                             @endif
                         </tr>
                     @endforeach

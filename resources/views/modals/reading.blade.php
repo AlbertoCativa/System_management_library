@@ -9,26 +9,32 @@
             </div>
             <div class="modal-body">
                 <form wire:submit.prevent="emprestar">
-                    <div>
-                        <label>Número de Acesso</label>
-                        <input type="text" wire:model="numero_acesso" wire:change="buscarLeitor" required>
+                    <div class="form-group">
+                        <label>Estudante/Leitor</label>
+                        <select wire:model="leitor_id" required class="form-control">
+                            <option selected>Selecione o estudante ou Leitor</option>
+                            @foreach($leitor as $leitors)
+                                <option value="{{ $leitors->id }}">{{ $leitors->nome }} ({{ $leitors->curso }}) - {{ $leitors->level }} - {{ $leitors->period }} </option>
+                            @endforeach
+                        </select>
                     </div>
-                    <h1></h1>
-                    <div>
+
+                    <div class="form-group">
                         <label>Livro</label>
-                        <select wire:model="livro_id" required>
+                        <select wire:model="livro_id" required class="form-control">
+                            <option selected>Selecione o livro</option>
                             @foreach($livros as $livro)
                                 <option value="{{ $livro->id }}">{{ $livro->titulo }} ({{ $livro->autor }})</option>
                             @endforeach
                         </select>
                     </div>
         
-                    <div>
+                    <div class="form-group">
                         <label>Data de Devolução</label>
-                        <input type="date" wire:model="data_devolucao" required>
+                        <input class="form-control" type="date" wire:model="data_devolucao" required>
                     </div>
         
-                    <button type="submit">Emprestar</button>
+                    <button class="btn btn-primary" type="submit">Emprestar</button>
                 </form>
             
             </div>

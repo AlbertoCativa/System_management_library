@@ -12,15 +12,11 @@ class Reading extends Component
 {
     use LivewireAlert;
 
-    public $numero_acesso, $reading, $livro_id, $leitor, $livro, $data_devolucao;
+    public $leitor_id, $reading, $livro_id, $leitor, $livro, $data_devolucao;
 
     public function mount(){
         $this->reading = Emprestimo::get();
-    }
-
-    public function buscarLeitor()
-    {
-        $this->leitor = Leitor::where('number', $this->numero_acesso)->get();
+        $this->leitor = Leitor::get();
     }
 
     public function emprestar()
@@ -30,13 +26,12 @@ class Reading extends Component
         $livro = Livro::find($this->livro_id);
         if ($livro) {
             Emprestimo::create([
-                'leitor_id' => 2,
+                'leitor_id' => $this->leitor_id,
                 'livro_id' => $livro->id,
                 'data_emprestimo' => now(),
                 'data_devolucao' => $this->data_devolucao,
             ]);
 
-            $livro->quantidade -= 1;
             $livro->save();
 
             $this->alert('success', 'SUCESSO', [
@@ -55,11 +50,25 @@ class Reading extends Component
             ]);
         }
     }
+
+    public function readingUpdate($id)
+    {
+        $reading = Emprestimo::find($id);
+        if($reading){
+            $reading->status = 'Devolvido';
+            $reading->save();
+        }
+        $this->alert('success', 'SUCESSO', [
+            'position' => 'center',
+            'toast' => false,
+            'timer' => 2000,
+            'text' => "Livro Devolvido",
+        ]);
+    }
     
     public function render()
     {
+        $this->mount();
         return view('livewire.admin.reading', ["livros" => Livro::get()])->layout("layout.app");
     }
-
-
 }
